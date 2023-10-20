@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4205815748805841548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4205815748805841549}
+  - component: {fileID: 4205815748805841546}
+  - component: {fileID: 8404111227885326441}
+  - component: {fileID: 4205815747461299593}
+  m_Layer: 0
+  m_Name: Lake 3
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205815748805841549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205815748805841548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.02, y: 4.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &4205815748805841546
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205815748805841548}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -4.125828, y: 3.3312302}
+  - {x: -4.1058445, y: 1.3113422}
+  - {x: -2.0991936, y: 1.3137035}
+  - {x: -2.1155396, y: 0.3356428}
+  - {x: -4.092066, y: 0.3082285}
+  - {x: -4.10544, y: -3.7171068}
+  - {x: -2.119917, y: -3.7000875}
+  - {x: -2.1116085, y: -2.725504}
+  - {x: 0.9213619, y: -2.7060418}
+  - {x: 0.9181919, y: -1.6877575}
+  - {x: 3.8939667, y: -1.6837459}
+  - {x: 3.8876247, y: 1.2813244}
+  - {x: 1.8881149, y: 1.2696304}
+  - {x: 1.897131, y: 2.2968616}
+  - {x: -0.11488724, y: 2.2998152}
+  - {x: -0.1200161, y: 3.3112507}
+  - {x: -4.132799, y: 3.3167744}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &8404111227885326441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205815748805841548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0c2c9f9892c7c40b1e5cee096dfc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 9
+  height: 8
+--- !u!114 &4205815747461299593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205815748805841548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a9cf64c0906ef45b4087c7b6bb854f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFoodAmount: 0
+  foodAmount: 0
+  foodReplenish: 0
+  maxWaterAmount: 100
+  waterAmount: 0
+  waterReplenish: 50
+  sourceType: 1
