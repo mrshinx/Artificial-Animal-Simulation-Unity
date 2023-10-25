@@ -412,6 +412,7 @@ MonoBehaviour:
   - {fileID: 53183344061669242, guid: a4321ba337f2cc1458f4a90fd7c85256, type: 3}
   - {fileID: 1106689969173847803, guid: 3c71e0058501fb54c9c1f3f486a2b04d, type: 3}
   spawnedLakes: []
+  trainingType: 1
 --- !u!1 &6918561365891134625
 GameObject:
   m_ObjectHideFlags: 0

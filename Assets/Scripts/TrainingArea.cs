@@ -11,6 +11,18 @@ public struct Food
     public int amountPerZone;
 }
 
+[System.Serializable]
+public enum TrainingType
+{
+    Lesson1,
+    Lesson2,
+    Lesson3,
+    Lesson4,
+    Inference
+}
+
+
+
 public class TrainingArea : MonoBehaviour
 {
     [Tooltip("How faster is the simulation compared to real time. Default 60x faster: 12mins = 12hrs")]
@@ -25,13 +37,39 @@ public class TrainingArea : MonoBehaviour
     public float height;
     public GameObject[] lakes;
     public List<GameObject> spawnedLakes;
+    public TrainingType trainingType;
+
+    private Dictionary<TrainingType, List<int>> lessonParameter = new Dictionary<TrainingType, List<int>>()
+        {
+            // max food // min food // lake amount // min rabbit // max rabbit
+            {TrainingType.Lesson1, new List<int>
+            {
+                50, 25, 1, 1, 1
+            } },
+            {TrainingType.Lesson2, new List<int>
+            {
+                100, 65, 5, 1, 1
+            } },
+            {TrainingType.Lesson3, new List<int>
+            {
+                50, 25, 5, 1, 1
+            } },
+            {TrainingType.Lesson4, new List<int>
+            {
+                75, 35, 5, 4, 7
+            } },
+            {TrainingType.Inference, new List<int>
+            {
+                200, 150, 1, 40, 41
+            } },
+        };
 
     private int resetTimer;
 
     // Start is called before the first frame update
     void Start()
     {
-        //ResetLakes();
+        if (trainingType != TrainingType.Inference) ResetLakes();
         ResetRabbitSpawn();
         ResetFoodSpawn();
         InvokeRepeating("RespawnFood", (12*60*60)/timeScale, (6*60*60)/timeScale); // Starts on day 1, repeats every 0.5 day afterwards. 
@@ -42,7 +80,7 @@ public class TrainingArea : MonoBehaviour
         resetTimer += 1;
         if (resetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
         {
-            //ResetLakes();
+            if (trainingType != TrainingType.Inference) ResetLakes();
             ResetRabbitSpawn();
             ResetFoodSpawn();
         }
@@ -74,18 +112,13 @@ public class TrainingArea : MonoBehaviour
 
     void RespawnFood()
     {
-        Debug.Log("Spawn Food");
-        float spawnAmount = Academy.Instance.EnvironmentParameters.GetWithDefault("spawn_amount", 100) / 100f;
         foreach (var rabbitFood in rabbitFoodList)
         {
-            //for (int i = 0; i < 0.5f* rabbitFood.zoneAmount/7; i++)
             for (int i = 0; i < rabbitFood.zoneAmount / 8; i++)
             {
-                if (foodCount > 250) return;
+                if (foodCount > lessonParameter[trainingType][0]) return;
                 Vector2 newSpawnPoint = GetNewSpawnPoint();
                 for (int j = 0; j < Mathf.RoundToInt(1f * rabbitFood.amountPerZone / 8); j++)
-                //for (int j = 0; j < Mathf.RoundToInt(0.35f * rabbitFood.amountPerZone/10); j++)
-                //for (int j = 0; j < Mathf.RoundToInt(rabbitFood.amountPerZone/10); j++)
                 {
                     Instantiate(rabbitFood.prefab, newSpawnPoint + Random.insideUnitCircle * spawnZoneSize, Quaternion.identity, transform);
                     foodCount += 1;
@@ -130,7 +163,7 @@ public class TrainingArea : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        SpawnNewRabbits(41);
+        SpawnNewRabbits(lessonParameter[trainingType][4]);
         resetTimer = 0;
     }
 
@@ -146,7 +179,7 @@ public class TrainingArea : MonoBehaviour
 
     public void SpawnNewRabbits(int spawnAmount)
     {
-        for (int i = 0; i < Random.Range(40, spawnAmount+1); i++)
+        for (int i = 0; i < Random.Range(lessonParameter[trainingType][3], spawnAmount+1); i++)
         //for (int i = 0; i < spawnAmount; i++)
         {
             Vector2 newSpawnPoint = GetNewSpawnPoint();
@@ -193,13 +226,13 @@ public class TrainingArea : MonoBehaviour
             Destroy(spawnedLake);
         }
         spawnedLakes = new List<GameObject>();
-        SpawnLakes(5);
+        SpawnLakes(lessonParameter[trainingType][2]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (foodCount < 175) RespawnFood();
+        if (foodCount < lessonParameter[trainingType][1]) RespawnFood();
 
     }
 }

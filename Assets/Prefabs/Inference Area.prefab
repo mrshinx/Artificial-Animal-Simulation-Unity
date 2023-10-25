@@ -438,6 +438,7 @@ MonoBehaviour:
   - {fileID: 8996320485616190585}
   - {fileID: 53183343189174738}
   - {fileID: 4205815748775026711}
+  trainingType: 4
 --- !u!1 &5510056501657019405
 GameObject:
   m_ObjectHideFlags: 0
